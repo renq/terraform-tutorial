@@ -6,6 +6,13 @@ resource "aws_instance" "myec2" {
   tags = {
     Name = "HelloWorld"
   }
+
+
+  # If we want mre instances ;)
+  # count = 2
+  # tags = {
+  #   Name = "HelloWorld-${count.index}"
+  # }
 }
 
 # terraform init - to download stuff
