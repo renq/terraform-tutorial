@@ -1,6 +1,17 @@
+variable "region" {
+  type = string
+  default = "eu-north-1"
+}
+
+variable "ami" {
+  type = map(string)
+  default = {
+    "eu-north-1" = "ami-0274f4b62b6ae3bd5"
+  }
+}
 
 resource "aws_instance" "myec2" {
-  ami           = "ami-0274f4b62b6ae3bd5"
+  ami           = lookup(var.ami, var.region)
   instance_type = "t3.micro"
 
   tags = {
