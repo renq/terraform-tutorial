@@ -3,20 +3,31 @@ variable "region" {
   default = "eu-north-1"
 }
 
-variable "ami" {
-  type = map(string)
-  default = {
-    "eu-north-1" = "ami-0274f4b62b6ae3bd5"
+data "aws_ami" "amazon_linux" {
+  most_recent      = true
+  owners           = ["amazon"]
+
+  filter {
+    name   = "name"
+    values = ["al2023-ami-*"]
+  }
+}
+
+locals {
+  ami_id = data.aws_ami.amazon_linux.image_id
+}
+
+locals {
+  common_tags = {
+    Name = "HelloWorld"
   }
 }
 
 resource "aws_instance" "myec2" {
-  ami           = lookup(var.ami, var.region)
+  ami           = local.ami_id
   instance_type = "t3.micro"
 
-  tags = {
-    Name = "HelloWorld"
-  }
+  tags = local.common_tags
 
 
   # If we want mre instances ;)
@@ -25,6 +36,12 @@ resource "aws_instance" "myec2" {
   #   Name = "HelloWorld-${count.index}"
   # }
 }
+
+
+output "region" {
+  value = var.region
+}
+
 
 # terraform init - to download stuff
 
