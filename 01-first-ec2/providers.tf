@@ -18,7 +18,7 @@ terraform {
 
 provider "aws" {
   # credentials are stored in ~/.aws/
-  region     = "eu-north-1"
+  region = "eu-north-1"
 }
 
 

@@ -1,11 +1,11 @@
 variable "region" {
-  type = string
+  type    = string
   default = "eu-north-1"
 }
 
 data "aws_ami" "amazon_linux" {
-  most_recent      = true
-  owners           = ["amazon"]
+  most_recent = true
+  owners      = ["amazon"]
 
   filter {
     name   = "name"
