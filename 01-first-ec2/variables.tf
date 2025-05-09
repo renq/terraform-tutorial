@@ -1,6 +1,7 @@
 variable "region" {
   type    = string
   default = "eu-north-1"
+  sensitive = false # if true, it won't be printed in the terminal and stored in tfstate
 }
 
 data "aws_ami" "amazon_linux" {

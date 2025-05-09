@@ -14,12 +14,12 @@ terraform {
     }
   }
 
-  backend "s3" {
-    bucket = "lipek-terraform-bucket-1"
-    key    = "default.tfstate"
-    use_lockfile = "true"
-    region = "eu-north-1"
-  }
+  # backend "s3" {
+  #   bucket = "lipek-terraform-bucket-1"
+  #   key    = "default.tfstate"
+  #   use_lockfile = "true"
+  #   region = "eu-north-1"
+  # }
 }
 
 
