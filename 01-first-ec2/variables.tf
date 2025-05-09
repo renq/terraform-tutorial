@@ -23,28 +23,8 @@ locals {
   }
 }
 
-resource "aws_instance" "myec2" {
-  ami           = local.ami_id
-  instance_type = "t3.micro"
-
-  tags = local.common_tags
-
-
-  # If we want mre instances ;)
-  # count = 2
-  # tags = {
-  #   Name = "HelloWorld-${count.index}"
-  # }
-}
 
 
 output "region" {
   value = var.region
 }
-
-
-# terraform init - to download stuff
-
-# terraform plan - to verify what will be created
-
-# terraform apply - to apply the configuration
